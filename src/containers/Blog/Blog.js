@@ -1,10 +1,9 @@
 import React, { Component } from "react";
-import { Route, NavLink } from "react-router-dom";
+import { Route, NavLink, Switch } from "react-router-dom";
 
 import "./Blog.css";
 import Posts from "../Blog/Posts/Posts";
 import NewPost from "../Blog/NewPost/NewPost";
-import FullPost from "../Blog/FullPost/FullPost";
 
 class Blog extends Component {
   render() {
@@ -15,11 +14,10 @@ class Blog extends Component {
             <ul>
               <li>
                 <NavLink
-                  to="/"
-                  exact
+                  to="/posts"
                   activeStyle={{ textDecoration: "underline" }}
                 >
-                  Home
+                  Posts
                 </NavLink>
               </li>
               <li>
@@ -30,9 +28,11 @@ class Blog extends Component {
         </header>
         {/* <Route path="/" exact render={() => <h1>hello</h1>} />
         <Route path="/" render={() => <h1>hello 2</h1>} /> */}
-        <Route path="/" exact component={Posts} />
-        <Route path="/new-post" exact component={NewPost} />
-        <Route path="/:id" exact component={FullPost} />
+
+        <Switch>
+          <Route path="/posts" component={Posts} />
+          <Route path="/new-post" exact component={NewPost} />
+        </Switch>
       </div>
     );
   }
